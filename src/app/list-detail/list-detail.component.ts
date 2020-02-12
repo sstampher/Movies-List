@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-detail',
@@ -7,14 +8,14 @@ import { DataService } from '../data.service';
   styleUrls: ['./list-detail.component.scss']
 })
 export class ListDetailComponent implements OnInit {
-  lists=[];
   list=[];
+  listName='';
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.data.cast.subscribe(data => this.lists = data);
-    this.data.cast.subscribe(data => this.list = data.filter(list => list.name === 'o'));
+   this.listName = this.route.snapshot.params.id;
+    this.data.cast.subscribe(data => this.list = data.filter(list => list.name === this.listName));
   }
 
  
