@@ -5,12 +5,20 @@
     </header>
 
     <div class="add-movie">
-        <input #addMovie (keyup.enter)="onAddMovie(addMovie.value)">
+        <form [formGroup]="newMovie" (ngSubmit)="onSubmit()">
+            <input type="text" list="suggested-movies" formControlName="movie">
+            <datalist id="suggested-movies">
+                <option value="test1">
+                <option value="test2">
+            </datalist>
+            <button type="submit">Submit</button>
+
+        </form>
     </div>
 
     <div class="view-movies">
         <ul>
-            <li *ngFor="let movie of list[0].movies">{{movie}}
+            <li *ngFor="let movie of list[0].movies">{{movie.name}}
                 <button>Delete</button>
                 <button>Edit</button>
                 <input type="checkbox">
