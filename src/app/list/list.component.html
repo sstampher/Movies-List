@@ -1,0 +1,30 @@
+
+<section class="lists">
+
+    <header>
+      <h3>Create/view lists</h3>
+    </header>
+  
+    <div class="create-list">
+  
+      <form [formGroup]="newList" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="name"/>
+      <button type="submit">Submit</button>
+    </form>
+    </div>
+  
+    <div class="view-lists">
+      <header>
+        <h3>my lists</h3>
+      </header>
+      <ul>
+           <li *ngFor="let list of lists">
+        {{ list | json }}
+        <button #deleteList (click)="onDeleteList(list.name)">Delete</button>
+        <button [routerLink]="['/list', list.name]">View</button>
+      </li>
+    </ul>
+    </div>
+  
+  </section>
+  

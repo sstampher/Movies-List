@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'Movies-List';
+  title = 'Movies-List-App';
+  values = [];
+  
+  onCreateList(value: string) {
+    this.values.push({name:value, movies:[]});
+  }
+
 }

@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    height: 90%;
+    width: 80%;
+    background-color: darken(lightblue, 10%);
+    section {
+      // is section necessary?
+      &.list {
+        border: 1px solid green;
+        height: 100%;
+        background-color: darken(lightblue, 10%);
+        display: grid;
+        grid-template-areas:
+          "header header"
+          "add-movie view-movies";
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 1fr 6fr;
+        @media (max-width: 800px) {
+          grid-template-areas:
+            "header"
+            "add-movie"
+            "view-movies";
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 6fr;
+        }
+        header {
+          grid-area: header;
+          border: 1px solid green;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          @media (max-width: 800px) {
+            justify-content: center;
+          }
+          h1 {
+            margin-right: 2em;
+            margin-left: 2em;
+          }
+        }
+        .add-movie {
+          grid-area: add-movie;
+          border: 1px solid green;
+          // ways around flex?
+          display: flex;
+          justify-content: center;
+        }
+        .view-movies {
+          //overflow
+          grid-area: view-movies;
+          border: 1px solid green;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          ul {
+            margin: 1.5em;
+            li {
+              list-style: none;
+              border: 1px solid green;
+              margin: 0.2em;
+              padding: 0.7em;
+              &:hover {
+                background-color: papayawhip;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

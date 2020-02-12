@@ -1,0 +1,21 @@
+<section class="list">
+
+    <header>
+        <h1>{{list[0].name}}</h1>
+    </header>
+
+    <div class="add-movie">
+        <input #addMovie (keyup.enter)="onAddMovie(addMovie.value)">
+    </div>
+
+    <div class="view-movies">
+        <ul>
+            <li *ngFor="let movie of list[0].movies">{{movie}}
+                <button>Delete</button>
+                <button>Edit</button>
+                <input type="checkbox">
+            </li>
+        </ul>
+    </div>
+
+</section>

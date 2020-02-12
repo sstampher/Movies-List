@@ -1,0 +1,28 @@
+.container {
+    height: 100vh;
+   // width: 100vw;
+    display: grid;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";      
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6fr 1fr;
+    header {
+        grid-area: header;
+    } 
+
+    main {
+        grid-area: main;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid red;
+    } 
+
+    footer {
+        grid-area: footer;
+    } 
+}
+
