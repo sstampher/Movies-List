@@ -44,6 +44,18 @@ export class ListComponent implements OnInit {
     this.data.updateLists(newList);
   }
 
+  movieCounter(listName: string) {
+    let list = this.lists.filter(list => list.name === listName);
+    let listLength = list[0].movies.length;
+    return listLength;
+  }
+
+  watchedCounter(listName: string){
+    let list = this.lists.filter(list => list.name === listName);
+    let watchedCount= list[0].movies ? list[0].movies.reduce((count, movie) => movie.watched ? count = count + 1 : count = count , 0) : 0;
+    return watchedCount;
+  }
+
   private uniqueNameValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean | null } => {
       for (let i = 0; i < this.lists.length; i++) {
