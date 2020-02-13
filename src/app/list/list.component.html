@@ -25,6 +25,7 @@
         {{ list | json }}
         <button #deleteList (click)="onDeleteList(list.name)">Delete</button>
         <button [routerLink]="['/list', list.name]">View</button>
+        <p>{{watchedCounter(list.name)}} of {{movieCounter(list.name)}} watched</p>
       </li>
     </ul>
     </div>
