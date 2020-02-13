@@ -10,7 +10,9 @@
       <form [formGroup]="newList" (ngSubmit)="onSubmit()">
         <!-- labels -->
       <input type="text" formControlName="name"/>
-      <button type="submit">Submit</button>
+      <p *ngIf="newList.get('name').errors && newList.get('name').errors.required && newList.get('name').touched">List name is required.</p>
+      <p *ngIf="newList.get('name').errors && newList.get('name').errors.nameAlreadyExists">A list with this name already exists.</p>
+      <button type="submit" [disabled]="newList.get('name').errors && (newList.get('name').errors.required || newList.get('name').errors.nameAlreadyExists)">Submit</button>
     </form>
     </div>
   
