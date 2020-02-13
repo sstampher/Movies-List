@@ -13,7 +13,12 @@
                 <option value="test1">
                 <option value="test2">
             </datalist>
-            <button type="submit">Submit</button>
+            <p
+                *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required && newMovie.get('movie').touched">
+                Movie name is required.</p>
+            <!-- <p *ngIf="newMovie.get('name').errors && newMovie.get('name').errors.nameAlreadyExists">A list with this name already exists.</p> -->
+            <button type="submit"
+                [disabled]="newMovie.get('movie').errors && newMovie.get('movie').errors.required">Submit</button>
         </form>
     </div>
 
@@ -23,7 +28,7 @@
 
                 <p *ngIf="!edit">{{movie.name}}</p>
 
-                <form *ngIf="edit" [formGroup]="editMovie" (ngSubmit)="onSubmitEdit(movie.name)">
+                <form *ngIf="edit" [formGroup]="newMovie" (ngSubmit)="onSubmitEdit(movie.name)">
                     <input type="text" list="suggested-movies" formControlName="movie" [value]="movie.name">
                     <datalist id="suggested-movies">
                         <option value="test1">
