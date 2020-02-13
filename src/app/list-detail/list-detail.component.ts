@@ -36,7 +36,7 @@ export class ListDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.listName = this.route.snapshot.params.id;
+    this.listName = this.route.snapshot.params.name;
     this.data.cast.subscribe(
       data => (this.list = data.filter(list => list.name === this.listName))
     );
