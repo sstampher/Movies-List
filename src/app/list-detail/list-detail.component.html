@@ -1,27 +1,42 @@
 <section class="list">
 
     <header>
+        <!-- maybe get rid of list[0] -->
         <h1>{{list[0].name}}</h1>
     </header>
 
     <div class="add-movie">
+        <!-- form width adjustable -->
         <form [formGroup]="newMovie" (ngSubmit)="onSubmit()">
-            <input type="text" list="suggested-movies" formControlName="movie">
+            <input type="text" list="suggested-movies" formControlName="movie" placeholder="enter a movie">
             <datalist id="suggested-movies">
                 <option value="test1">
                 <option value="test2">
             </datalist>
             <button type="submit">Submit</button>
-
         </form>
     </div>
 
     <div class="view-movies">
         <ul>
-            <li *ngFor="let movie of list[0].movies">{{movie.name}}
-                <button>Delete</button>
-                <button>Edit</button>
-                <input type="checkbox">
+            <li *ngFor="let movie of list[0].movies">
+
+                <p *ngIf="!edit">{{movie.name}}</p>
+
+                <form *ngIf="edit" [formGroup]="editMovie" (ngSubmit)="onSubmitEdit(movie.name)">
+                    <input type="text" list="suggested-movies" formControlName="movie" [value]="movie.name">
+                    <datalist id="suggested-movies">
+                        <option value="test1">
+                        <option value="test2">
+                    </datalist>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <button (click)="onDeleteMovie(movie.name)">Delete</button>
+                <!-- warn on delete -->
+                <button (click)="onEditMovie(movie.name)">Edit</button>
+                <input type="checkbox" (change)="onCheck(movie.name)" [checked]="movie.watched">
+                {{movie.watched}}
             </li>
         </ul>
     </div>

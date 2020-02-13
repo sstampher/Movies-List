@@ -8,3 +8,22 @@ body {
     margin: 0;
     padding: 0;
 }
+
+button {
+    // make sure shorthand is ok
+    background: none;
+    border: none;
+    
+}
+
+input {
+    // make more concise
+    background:none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid grey;
+    &:focus {
+        outline: none;
+    }
+}
