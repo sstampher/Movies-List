@@ -3,6 +3,7 @@
     height: 90%;
     width: 80%;
     background-color: darken(lightblue, 10%);
+    // section needed?
     section {
       &.lists {
         // border: 1px solid green;
@@ -60,15 +61,50 @@
           display: flex;
           align-items: center;
           flex-direction: column;
-          ul {width: 80%;
+          ul {
+            width: 68%;
             margin: 1.5em;
             li {
               list-style: none;
-              // border: 1px solid green;
+              border: 1px dotted grey;
               margin: 0.2em;
-              padding: 0.7em;
+              padding: 1.5em 3em;
+              display: grid;
+              grid-template-areas:
+              "name button-delete button-view"
+              "counter button-delete button-view";
+              grid-template-columns: 3fr .5fr .5fr;
+              grid-template-rows: 2.5fr 1fr;
+              @media (max-width: 450px){
+                grid-template-areas:
+                "name name"
+                "counter counter"
+                "button-delete button-view";
+                grid-template-rows: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
+                padding: 1em;
+              }
               &:hover {
                 background-color: papayawhip;
+              }
+              h3 {
+                grid-area: name;
+                @media(max-width: 450px){
+                  text-align: center;
+                }
+              }
+              button.delete{
+                grid-area: button-delete;
+              }
+              button.view{
+                grid-area: button-view;
+              }
+              h6{
+                font-style: italic;
+                grid-area: counter;
+                @media(max-width: 450px){
+                  text-align: center;
+                }
               }
             }
           }
