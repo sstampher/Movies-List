@@ -1,4 +1,5 @@
 
+
 <section class="lists">
 
     <header>
@@ -6,30 +7,34 @@
     </header>
   
     <div class="create-list">
-  
       <form [formGroup]="newList" (ngSubmit)="onSubmit()">
-        <!-- labels -->
-      <input type="text" formControlName="name"/>
+        <!-- labels, placeholder caps (all caps font is good) -->
+      <input type="text" formControlName="name" placeholder="Add a new list"/>
+        <!-- are p tags okay for small text? -->
       <p *ngIf="newList.get('name').errors && newList.get('name').errors.required && newList.get('name').touched">List name is required.</p>
       <p *ngIf="newList.get('name').errors && newList.get('name').errors.nameAlreadyExists">A list with this name already exists.</p>
-      <button type="submit" [disabled]="newList.get('name').errors && (newList.get('name').errors.required || newList.get('name').errors.nameAlreadyExists)">Submit</button>
+      <!-- move button above p -->
+      <button type="submit" [disabled]="newList.get('name').errors && (newList.get('name').errors.required || newList.get('name').errors.nameAlreadyExists)">+</button>
     </form>
     </div>
   
-    <div class="view-lists">
-      <header>
-        <h3>my lists</h3>
+  <div class="view-lists">
+      <header *ngIf="lists.length === 0">
+        <h6><em>There are no lists to display.</em></h6>
       </header>
-      <ul>
-           <li *ngFor="let list of lists">
-        {{ list | json }}
+
+      <header *ngIf="lists.length !== 0">
+        <h3>My Lists:</h3>
+      </header>
+
+      <ul *ngFor="let list of lists">
+           <li>
+        {{ list.name }}
         <button #deleteList (click)="onDeleteList(list.name)">Delete</button>
         <button [routerLink]="['/list', list.name]">View</button>
-        <p>{{watchedCounter(list.name)}} of {{movieCounter(list.name)}} watched</p>
+        <em>{{watchedCounter(list.name)}} of {{movieCounter(list.name)}} movies watched.</em>
       </li>
     </ul>
     </div>
-
-
   </section>
   
