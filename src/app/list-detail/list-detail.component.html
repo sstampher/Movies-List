@@ -13,8 +13,7 @@
                 <option value="test1">
                 <option value="test2">
             </datalist>
-            <p
-                *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required && newMovie.get('movie').touched">
+            <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required && newMovie.get('movie').touched">
                 Movie name is required.</p>
             <!-- <p *ngIf="newMovie.get('name').errors && newMovie.get('name').errors.nameAlreadyExists">A list with this name already exists.</p> -->
             <button type="submit"
@@ -41,7 +40,6 @@
                 <!-- warn on delete -->
                 <button (click)="onEditMovie(movie.name)">Edit</button>
                 <input type="checkbox" (change)="onCheck(movie.name)" [checked]="movie.watched">
-                {{movie.watched}}
             </li>
         </ul>
     </div>
