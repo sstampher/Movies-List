@@ -22,7 +22,7 @@ import { HomeComponent } from "./home/home.component";
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "", redirectTo: "/home", pathMatch: "full" },
+      { path: "", component: HomeComponent },
       { path: "home", component: HomeComponent },
       { path: "lists", component: ListComponent },
       { path: "list/:name", component: ListDetailComponent }
