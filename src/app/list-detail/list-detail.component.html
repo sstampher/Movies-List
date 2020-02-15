@@ -14,10 +14,10 @@
                 <option value="test2">
             </datalist>
             <button type="submit"
-                [disabled]="newMovie.get('movie').errors && newMovie.get('movie').errors.required">Submit</button>
+                [disabled]="newMovie.get('movie').errors">Submit</button>
                 <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required && newMovie.get('movie').touched">
                     Movie name is required.</p>
-                <!-- <p *ngIf="newMovie.get('name').errors && newMovie.get('name').errors.nameAlreadyExists">A list with this name already exists.</p> -->
+                <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.nameAlreadyExists">A movie with this name already exists.</p>
         </form>
     </div>
 
