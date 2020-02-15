@@ -20,7 +20,6 @@ import { delay, map } from "rxjs/operators";
 export class ListDetailComponent implements OnInit {
   list = [];
   listName = "";
-  edit = false;
 
   // consider consolidating repetitive formBuilders
   newMovie = this.formBuilder.group({
@@ -29,7 +28,7 @@ export class ListDetailComponent implements OnInit {
     )
   });
   editMovie = this.formBuilder.group({
-    movie: new FormControl("", Validators.required)
+    movie: new FormControl("", Validators.required, this.uniqueNameValidator())
   });
 
   constructor(
@@ -45,7 +44,9 @@ export class ListDetailComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  /*........ Event Handling Functions ........*/
+
+  onSubmitNewMovie() {
     this.list[0].movies.push({
       name: this.newMovie.value["movie"],
       watched: false,
@@ -65,8 +66,9 @@ export class ListDetailComponent implements OnInit {
     this.list[0].movies = updatedMoviesList;
   }
 
-  onEditMovie() {
-    this.edit = !this.edit;
+  onClickEdit(movieName: string) {
+    let movie = this.list[0].movies.filter(movie => movie.name === movieName);
+    movie[0].edit = !movie[0].edit;
   }
 
   onCheck(movieName: string) {
@@ -77,8 +79,10 @@ export class ListDetailComponent implements OnInit {
   onSubmitEdit(movieName: string) {
     let movie = this.list[0].movies.filter(movie => movie.name === movieName);
     movie[0].name = this.editMovie.value["movie"];
-    this.edit = !this.edit;
+    movie[0].edit = !movie[0].edit;
   }
+
+  /*........ Form Validation Functions ........*/
 
   checkIfNameExists(name: string): Observable<boolean> {
     console.log(this.list[0].movies);

@@ -7,7 +7,7 @@
 
     <div class="add-movie">
         <!-- form width adjustable -->
-        <form [formGroup]="newMovie" (ngSubmit)="onSubmit()">
+        <form [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()">
             <input type="text" list="suggested-movies" formControlName="movie" placeholder="enter a movie">
             <datalist id="suggested-movies">
                 <option value="test1">
@@ -15,7 +15,7 @@
             </datalist>
             <button type="submit"
                 [disabled]="newMovie.get('movie').errors">Submit</button>
-                <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required && newMovie.get('movie').touched">
+                <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.required">
                     Movie name is required.</p>
                 <p *ngIf="newMovie.get('movie').errors && newMovie.get('movie').errors.nameAlreadyExists">A movie with this name already exists.</p>
         </form>
@@ -25,21 +25,25 @@
         <ul>
             <li *ngFor="let movie of list[0].movies">
 
-                <p *ngIf="!edit">{{movie.name}}</p>
+                <p *ngIf="!movie.edit">{{movie.name}}</p>
 
-                <form *ngIf="edit" [formGroup]="newMovie" (ngSubmit)="onSubmitEdit(movie.name)">
+                <form *ngIf="movie.edit" [formGroup]="editMovie" (ngSubmit)="onSubmitEdit(movie.name)">
                     <input type="text" list="suggested-movies" formControlName="movie" [value]="movie.name">
                     <datalist id="suggested-movies">
                         <option value="test1">
                         <option value="test2">
                     </datalist>
-                    <button type="submit">Submit</button>
+                    <button type="submit"
+                [disabled]="editMovie.get('movie').errors">Submit</button>
+                <p *ngIf="editMovie.get('movie').errors && editMovie.get('movie').errors.required">
+                    Movie name is required.</p>
+                <p *ngIf="editMovie.get('movie').errors && editMovie.get('movie').errors.nameAlreadyExists && editMovie.get('movie').dirty">A movie with this name already exists.</p>
                 </form>
                 
                 <div class="actions">
                 <button class="delete" (click)="onDeleteMovie(movie.name)">Delete</button>
                 <!-- warn on delete -->
-                <button class="edit" (click)="onSubmitEdit(movie.name)">Edit</button>
+                <button class="edit" (click)="onClickEdit(movie.name)">Edit</button>
                 <form>
                 <label *ngIf="!movie.watched">Mark as Watched</label>
                 <input type="checkbox" (change)="onCheck(movie.name)" [checked]="movie.watched">
