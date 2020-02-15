@@ -9,7 +9,8 @@ import {
   ValidationErrors,
   AsyncValidatorFn
 } from "@angular/forms";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
+import { delay, map } from "rxjs/operators";
 
 @Component({
   selector: "app-list-detail",
@@ -23,7 +24,9 @@ export class ListDetailComponent implements OnInit {
 
   // consider consolidating repetitive formBuilders
   newMovie = this.formBuilder.group({
-    movie: new FormControl("", Validators.required)
+    movie: new FormControl("", Validators.required,
+      this.uniqueNameValidator()
+    )
   });
   editMovie = this.formBuilder.group({
     movie: new FormControl("", Validators.required)
@@ -46,7 +49,7 @@ export class ListDetailComponent implements OnInit {
     this.list[0].movies.push({
       name: this.newMovie.value["movie"],
       watched: false,
-      rating: null
+      edit: false
     });
     this.newMovie.reset();
   }
@@ -77,16 +80,19 @@ export class ListDetailComponent implements OnInit {
     this.edit = !this.edit;
   }
 
-  private uniqueNameValidator(): AsyncValidatorFn {
-    return (
-      control: AbstractControl
-    ): Promise<ValidationErrors> | Observable<ValidationErrors> => {
-      for (let i = 0; i < this.list[0].movies.length; i++) {
-        console.log(this.list[0].movies.name, control);
-        if (control.value === this.list[0].movies.name) {
-          return null;
-        }
-      }
+  checkIfNameExists(name: string): Observable<boolean> {
+    console.log(this.list[0].movies);
+    let findName = this.list[0].movies.filter(movie => movie.name === name);
+    return of(findName[0]).pipe(delay(100));
+  }
+
+  uniqueNameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkIfNameExists(control.value).pipe(
+        map(res => {
+          return res ? { nameAlreadyExists: true } : null;
+        })
+      );
     };
   }
 }
