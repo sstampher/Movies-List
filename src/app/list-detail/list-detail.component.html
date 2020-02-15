@@ -39,7 +39,7 @@
                 <div class="actions">
                 <button class="delete" (click)="onDeleteMovie(movie.name)">Delete</button>
                 <!-- warn on delete -->
-                <button class="edit" (click)="onEditMovie(movie.name)">Edit</button>
+                <button class="edit" (click)="onSubmitEdit(movie.name)">Edit</button>
                 <form>
                 <label *ngIf="!movie.watched">Mark as Watched</label>
                 <input type="checkbox" (change)="onCheck(movie.name)" [checked]="movie.watched">
