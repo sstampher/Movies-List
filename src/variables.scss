@@ -1,0 +1,47 @@
+/*.......... Colors ..........*/
+
+$background: rgb(194, 210, 210);
+$main-text: rgb(116, 128, 129);
+$dark-text: darken($main-text, 20%);
+$danger:  rgb(252, 102, 72);
+
+$grad1: rgb(199, 212, 192);
+$grad2: rgb(224, 233, 232);
+$grad3: rgb(203, 203, 203);
+$grad4: rgb(222, 213, 209);
+$grad5: rgb(151, 221, 171);
+$grad6: rgb(201, 242, 228);
+$grad7: rgb(164, 197, 204);
+$grad8: rgb(207, 219, 217);
+$grad9: rgb(168, 158, 153);
+$grad10: rgb(255, 227, 207);
+$grad11: rgb(254, 175, 160);
+
+/*.......... Mixins ..........*/
+
+@mixin neumorphism($radius) {
+  border-radius: $radius;
+  background: $background;
+  box-shadow:  -1px 1px 3px #a7b5b5, 
+             1px -1px 3px #ddefef;
+}
+
+@mixin border-gradient {
+    border-image: linear-gradient(
+        to right,
+        $grad2 10%,
+        $grad11 10% 20%,
+        $grad10 20% 30%,
+        $grad9 30% 40%,
+        $grad8 40% 50%,
+        $grad7 50% 60%,
+        $grad6 60% 70%,
+        $grad5 70% 80%,
+        $grad4 80% 90%,
+        $grad3 90% 100%
+        
+      )
+      35 round;
+}
+
+/*.......... Viewport Sizes ..........*/
