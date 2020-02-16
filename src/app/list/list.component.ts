@@ -14,6 +14,7 @@ import {
   styleUrls: ["./list.component.scss"]
 })
 export class ListComponent implements OnInit {
+
   lists = [];
   newList = this.formBuilder.group({
     name: new FormControl("", [Validators.required, this.uniqueNameValidator()])

@@ -1,21 +1,40 @@
 <section class="lists">
-
-  <header>
+  <header class="main">
     <h3>Create/view lists</h3>
   </header>
 
   <div class="create-list">
     <form [formGroup]="newList" (ngSubmit)="onSubmit()">
       <!-- labels, placeholder caps (all caps font is good) -->
-      <input type="text" formControlName="name" placeholder="Add a new list" />
-      <!-- are p tags okay for small text?, needs hover cursor -->
-      <button type="submit"
-        [disabled]="newList.get('name').errors && (newList.get('name').errors.required || newList.get('name').errors.nameAlreadyExists)">+</button>
-      <p *ngIf="newList.get('name').errors && newList.get('name').errors.required && newList.get('name').touched">List
-        name is required.</p>
-      <p *ngIf="newList.get('name').errors && newList.get('name').errors.nameAlreadyExists">A list with this name
-        already exists.</p>
+      <label for="add-list"
+        >Add a new list {{ nameAlreadyExists }}
+        <input
+          [ngClass]="{
+            invalid:
+              newList.get('name').errors &&
+              newList.get('name').errors.nameAlreadyExists
+          }"
+          type="text"
+          id="add-list"
+          formControlName="name"
+          placeholder="Add a new list"
+      /></label>
+      <!--needs hover cursor -->
+      <button type="submit" [disabled]="newList.get('name').errors">
+        +
+      </button>
     </form>
+
+    <!-- Validation Errors -->
+    <div
+      [ngClass]="{
+        invalid:
+          newList.get('name').errors &&
+          newList.get('name').errors.nameAlreadyExists
+      }"
+    >
+      A list with this name already exists.
+    </div>
   </div>
 
   <div class="view-lists">
@@ -30,8 +49,10 @@
         <h3>{{ list.name }}</h3>
         <button class="delete" (click)="onDeleteList(list.name)">Delete</button>
         <button class="view" [routerLink]="['/list', list.name]">View</button>
-        <!-- em okay by itself? -->
-        <h6>{{watchedCounter(list.name)}} of {{movieCounter(list.name)}} movies watched.</h6>
+        <h6>
+          {{ watchedCounter(list.name) }} of
+          {{ movieCounter(list.name) }} movies watched.
+        </h6>
       </li>
     </ul>
   </div>

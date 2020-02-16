@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './variables.scss';
+
 body {
-    background-color: lightblue;
+    background-color: $background;
     box-sizing: border-box;
 }
 
@@ -10,19 +13,18 @@ body {
 }
 
 button {
-    // make sure shorthand is ok
-    background: none;
+    padding: 1em; 
+    margin: 1em;
     border: none;
-    
+    background: $background;
+    @include neumorphism(60px);
 }
 
 input {
-    // make more concise
-    background:none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 2px solid grey;
+    background: none;
+    border: 2px solid grey;
+    border-radius: 0px;
+    padding: 1em;
     &:focus {
         outline: none;
     }
