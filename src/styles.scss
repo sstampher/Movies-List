@@ -15,9 +15,9 @@ body {
 button {
     padding: 1em; 
     margin: 1em;
-    border: none;
+    border: 2px solid $main-text;
     background: $background;
-    @include neumorphism(60px);
+    
 }
 
 input {
