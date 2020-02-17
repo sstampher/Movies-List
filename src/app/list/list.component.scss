@@ -11,8 +11,8 @@
       grid-template-areas:
         "header header"
         "create-list view-lists";
-      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-      grid-template-rows: minmax(0, 1fr) minmax(0, 6fr);
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: 1fr 6fr;
       @media (max-width: 800px) {
         grid-template-areas:
           "header"
@@ -25,7 +25,6 @@
         color: $dark-text;
         &.main {
           grid-area: header;
-          border-bottom: 2px dotted $main-text;
           display: flex;
           justify-content: left;
           align-items: center;
@@ -44,19 +43,34 @@
         flex-direction: column;
         justify-content: top;
         align-items: center;
-        margin-top: 3em;
+        margin-top: 2em;
+        margin-bottom: 2em;
         @media (max-width: 800px) {
-          margin-top: 0;
           justify-content: center;
-          flex-direction: row;
+          margin-top: 0em;
+          margin-bottom: 0em;
         }
         form {
-          display: flex;
-          margin: 1.5em;
-          flex-direction: row;
-          input.invalid {
-            border-color: $danger;
-            color: $danger;
+          display: grid;
+          grid-template-areas:
+            "label label"
+            "input submit";
+          grid-template-rows: 1fr 3fr;
+          grid-template-columns: 3fr 1fr;
+          label {
+            grid-area: label;
+            text-align: center;
+            margin-bottom: 0.4em;
+          }
+          input {
+            grid-area: input;
+            &.invalid {
+              border-color: $danger;
+              color: $danger;
+            }
+          }
+          button {
+            grid-area: submit;
           }
         }
         div {
@@ -72,28 +86,29 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        height: 100%;
+        overflow-y: auto;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        @media (max-width: 800px) {
+          margin-top: 0em;
+          margin-bottom: 0em;
+        }
         ul {
           width: 68%;
           margin: 1.5em;
           li {
             list-style: none;
-            @include neumorphism(10px);
+            border: 1.5px solid $main-text;
+            background-color: $grad4;
             margin: 0.2em;
             padding: 1.5em 3em;
-            display: grid;
-            grid-template-areas:
-              "name button-delete button-view"
-              "counter button-delete button-view";
-            grid-template-columns: 3fr .5fr .5fr;
-            grid-template-rows:minmax(0, 2.5fr) minmax(0, 1fr);
-            @media (max-width: 450px) {
-              grid-template-areas:
-                "name name"
-                "counter counter"
-                "button-delete button-view";
-              grid-template-rows: 1fr 1fr 1fr;
-              grid-template-columns: 1fr 1fr;
-              padding: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @media (max-width: 800px) {
+              flex-direction: column;
+              padding: 1.5em;
             }
             &:hover {
               background-color: darken($background, 10%);
@@ -104,13 +119,14 @@
                 text-align: center;
               }
             }
-            button.delete {
-              grid-area: button-delete;
+            .buttons {
+              display: flex;
+              flex-direction: row;
+              @media (max-width: 800px) {
+                margin-top: 1em;
+              }
             }
-            button.view {
-              grid-area: button-view;
-            }
-            h6 {
+            p {
               font-style: italic;
               grid-area: counter;
               @media (max-width: 450px) {

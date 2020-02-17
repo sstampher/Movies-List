@@ -13,18 +13,18 @@ body {
 }
 
 button {
-    padding: 1em; 
-    margin: 1em;
+    padding: .7em; 
     border: 2px solid $main-text;
     background: $background;
-    
+    margin-right: .5em;
+    margin-left: .5em;
 }
 
 input {
     background: none;
-    border: 2px solid grey;
+    border: 1.5px solid grey;
+    padding: .5em;
     border-radius: 0px;
-    padding: 1em;
     &:focus {
         outline: none;
     }

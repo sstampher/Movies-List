@@ -18,6 +18,7 @@ import { MoviesApiService } from '../movies-api.service';
   templateUrl: "./list-detail.component.html",
   styleUrls: ["./list-detail.component.scss"]
 })
+
 export class ListDetailComponent implements OnInit {
   list = [];
   listName = "";
@@ -93,7 +94,6 @@ export class ListDetailComponent implements OnInit {
   /*........ Form Validation Functions ........*/
 
   checkIfNameExists(name: string): Observable<boolean> {
-    console.log(this.list[0].movies);
     let findName = this.list[0].movies.filter(movie => movie.name === name);
     return of(findName[0]).pipe(delay(100));
   }
@@ -111,9 +111,6 @@ export class ListDetailComponent implements OnInit {
   /*........ Api Search Functions ........*/
 
   searchMovies(query: string){
-    console.log(query);
     this.searchQuery.next(query);
-    console.log(this.searchQuery);
-    console.log(this.searchResults);
   }
 }

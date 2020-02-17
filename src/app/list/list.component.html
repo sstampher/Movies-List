@@ -1,13 +1,13 @@
 <section class="lists">
   <header class="main">
-    <h3>Create/view lists</h3>
+    <h1>My Movie Lists</h1>
   </header>
 
   <div class="create-list">
     <form [formGroup]="newList" (ngSubmit)="onSubmit()">
       <!-- labels, placeholder caps (all caps font is good) -->
       <label for="add-list"
-        >Add a new list
+        >Add a new list</label>
         <input
           [ngClass]="{
             invalid:
@@ -17,8 +17,8 @@
           type="text"
           id="add-list"
           formControlName="name"
-          placeholder="Add a new list"
-      /></label>
+          placeholder="list name"
+      />
       <!--needs hover cursor -->
       <button type="submit" [disabled]="newList.get('name').errors">
         +
@@ -39,20 +39,21 @@
 
   <div class="view-lists">
     <header *ngIf="lists.length === 0">
-      <h6><em>There are no lists to display.</em></h6>
-    </header>
-    <header *ngIf="lists.length !== 0">
-      <h3>My Lists:</h3>
+      <h4><em>There are no lists to display.</em></h4>
     </header>
     <ul *ngFor="let list of lists">
       <li>
+        <div class="list-description">
         <h3>{{ list.name }}</h3>
-        <button class="delete" (click)="onDeleteList(list.name)">Delete</button>
-        <button class="view" [routerLink]="['/list', list.name]">View</button>
-        <h6>
+        <p>
           {{ watchedCounter(list.name) }} of
           {{ movieCounter(list.name) }} movies watched.
-        </h6>
+        </p>
+        </div>
+        <div class="buttons">
+        <button class="delete" (click)="onDeleteList(list.name)">Delete</button>
+        <button class="view" [routerLink]="['/list', list.name]">View</button>
+  </div>
       </li>
     </ul>
   </div>
