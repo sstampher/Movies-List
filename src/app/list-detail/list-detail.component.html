@@ -4,7 +4,7 @@
     <h1>{{ list[0].name }}</h1>
   </header>
   <div class="add-movie">
-    <form [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()" (keyup)="searchMovies(newMovie.get('movie').value)">{{newMovie.get('movie').value}}
+    <form [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()" (keyup)="searchMovies(newMovie.get('movie').value)">
       <label for="add-movie">Add a new movie</label>
       <input
         id="add-movie"
@@ -20,10 +20,8 @@
       />
       
      
-      <datalist *ngIf="searchResults" id="suggested-movies" >
-       <span *ngFor="let result of searchResults">
-        <option value="{{result.Title}}">{{result.Title}}</option>
-      </span>
+      <datalist *ngIf="searchResults" id="suggested-movies">
+        <option *ngFor="let result of searchResults" value="{{result.Title}}">{{result.Title}}</option>
       </datalist>
    
 
