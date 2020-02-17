@@ -18,7 +18,7 @@ export class MoviesApiService {
 
   searchMovies(searchQuery) {
     return this.http
-        .get(`http://www.omdbapi.com/?s=${searchQuery}&apikey=7cbf8fc6`)
+        .get(`https://www.omdbapi.com/?s=${searchQuery}&apikey=7cbf8fc6`)
         .pipe(map(res => res || []));
   }
 
