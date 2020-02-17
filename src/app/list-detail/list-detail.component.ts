@@ -9,8 +9,9 @@ import {
   ValidationErrors,
   AsyncValidatorFn
 } from "@angular/forms";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 import { delay, map } from "rxjs/operators";
+import { MoviesApiService } from '../movies-api.service';
 
 @Component({
   selector: "app-list-detail",
@@ -20,8 +21,9 @@ import { delay, map } from "rxjs/operators";
 export class ListDetailComponent implements OnInit {
   list = [];
   listName = "";
+  searchQuery = new Subject<string>();
+  searchResults = [];
 
-  // consider consolidating repetitive formBuilders
   newMovie = this.formBuilder.group({
     movie: new FormControl("", Validators.required,
       this.uniqueNameValidator()
@@ -33,9 +35,15 @@ export class ListDetailComponent implements OnInit {
 
   constructor(
     private data: DataService,
+    private movies: MoviesApiService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.movies.search(this.searchQuery)
+      .subscribe(results => {
+        this.searchResults = results['Search'];
+      });
+  }
 
   ngOnInit() {
     this.listName = this.route.snapshot.params.name;
@@ -98,5 +106,14 @@ export class ListDetailComponent implements OnInit {
         })
       );
     };
+  }
+
+  /*........ Api Search Functions ........*/
+
+  searchMovies(query: string){
+    console.log(query);
+    this.searchQuery.next(query);
+    console.log(this.searchQuery);
+    console.log(this.searchResults);
   }
 }

@@ -8,6 +8,8 @@ import { DataService } from "./data.service";
 import { ListDetailComponent } from "./list-detail/list-detail.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HomeComponent } from "./home/home.component";
+import { HttpClientModule } from '@angular/common/http';
+import { MoviesApiService } from './movies-api.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { HomeComponent } from "./home/home.component";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent },
@@ -28,7 +31,7 @@ import { HomeComponent } from "./home/home.component";
       { path: "list/:name", component: ListDetailComponent }
     ])
   ],
-  providers: [DataService],
+  providers: [DataService, MoviesApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
