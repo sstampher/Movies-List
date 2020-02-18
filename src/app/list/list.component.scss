@@ -80,7 +80,7 @@
 }
 
 .form {
-  margin: 3em;
+  margin: 3em 3em 1em 3em;
   display: grid;
   grid-template-areas:
     "label label"
@@ -94,8 +94,7 @@
     grid-area: label;
     margin-bottom: 0.4em;
   }
-  input {
-    // fix this by toggling class
+  & .input {
     grid-area: input;
     &.invalid {
       border-color: $danger;

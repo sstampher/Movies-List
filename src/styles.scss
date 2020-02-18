@@ -5,7 +5,6 @@
 body {
     background-color: $background;
     box-sizing: border-box;
-    //overflow: hidden;
 }
 
 * {
@@ -28,5 +27,13 @@ input {
     border-radius: 0px;
     &:focus {
         outline: none;
+    }
+}
+
+.error {
+    visibility: hidden;
+    &.invalid {
+        color: $danger;
+        visibility: visible;
     }
 }
