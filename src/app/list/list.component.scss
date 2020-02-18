@@ -10,7 +10,7 @@
   @include neumorphism(20px);
 }
 
-/*.......... Main Grid Container & Items ..........*/
+/*.......... Main Grid Container & Grid Items ..........*/
 
 .lists {
   height: 100%;
@@ -29,32 +29,34 @@
     grid-template-rows: 0.5fr 0.5fr 6fr;
   }
   & .header {
-    color: $dark-text;
     grid-area: header;
     display: flex;
     justify-content: left;
     align-items: center;
+    color: $dark-text;
     border-bottom: 2px dotted $main-text;
     margin-right: 2em;
     margin-left: 2em;
     @include border-gradient(right, 8);
     @media (max-width: 800px) {
       justify-content: center;
+      border-bottom: none;
     }
   }
   & .create {
-    border-right: 2px dotted $main-text;
-    @include border-gradient(top, 4);
     grid-area: create-list;
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
     margin-bottom: 2em;
+    border-right: 2px dotted $main-text;
+    @include border-gradient(top, 4);
     @media (max-width: 800px) {
       justify-content: center;
       margin-top: 0em;
       margin-bottom: 0em;
+      border-right: none;
     }
   }
   & .content {

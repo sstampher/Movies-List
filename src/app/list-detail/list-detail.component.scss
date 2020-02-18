@@ -1,5 +1,7 @@
 @import "../../variables.scss";
 
+/*.......... Host Container ..........*/
+
 :host {
   display: block;
   height: 90%;
@@ -8,7 +10,7 @@
   @include neumorphism(20px);
 }
 
-/*.......... Main Grid Container & Items ..........*/
+/*.......... Main Grid Container & Grid Items ..........*/
 
 .movies {
   height: 100%;
@@ -36,20 +38,22 @@
     border-bottom: 2px dotted $main-text;
     @media (max-width: 800px) {
       justify-content: center;
+      border-bottom: none;
     }
   }
   & .add {
-    border-right: 2px dotted $main-text;
     grid-area: add-movie;
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
     margin-bottom: 2em;
+    border-right: 2px dotted $main-text;
     @media (max-width: 800px) {
       justify-content: center;
       margin-top: 0em;
       margin-bottom: 0em;
+      border-right: none;
     }
   }
   & .view {
