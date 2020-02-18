@@ -12,7 +12,7 @@ export class MoviesApiService {
   constructor(private http: HttpClient) { }
 
   search(searchQuery: Observable<string>) {
-    return searchQuery.pipe(debounceTime(400),distinctUntilChanged(),
+    return searchQuery.pipe(debounceTime(100),distinctUntilChanged(),
       switchMap(query => this.searchMovies(query)));
   }
 

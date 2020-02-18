@@ -12,7 +12,8 @@
         [ngClass]="{
           invalid:
             newList.get('name').errors &&
-            newList.get('name').errors.nameAlreadyExists
+            newList.get('name').errors.nameAlreadyExists,
+            input: true
         }"
         type="text"
         id="add-list"
@@ -30,7 +31,8 @@
       [ngClass]="{
         invalid:
           newList.get('name').errors &&
-          newList.get('name').errors.nameAlreadyExists
+          newList.get('name').errors.nameAlreadyExists,
+          error: true
       }"
     >
       A list with this name already exists.

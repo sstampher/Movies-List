@@ -11,7 +11,8 @@
         [ngClass]="{
           invalid:
             newMovie.get('movie').errors &&
-            newMovie.get('movie').errors.nameAlreadyExists
+            newMovie.get('movie').errors.nameAlreadyExists,
+            input: true
         }"
         type="text"
         list="suggested-movies"
@@ -35,7 +36,8 @@
       [ngClass]="{
         invalid:
           newMovie.get('movie').errors &&
-          newMovie.get('movie').errors.nameAlreadyExists
+          newMovie.get('movie').errors.nameAlreadyExists,
+          error: true
       }"
     >
       A movie with this name already exists.
@@ -68,7 +70,8 @@
             [ngClass]="{
               invalid:
                 editMovie.get('movie').errors &&
-                editMovie.get('movie').errors.nameAlreadyExists
+                editMovie.get('movie').errors.nameAlreadyExists,
+                input: true
             }"
             type="text"
             list="suggested-movies"
@@ -88,7 +91,8 @@
               invalid:
                 editMovie.get('movie').errors &&
                 editMovie.get('movie').errors.nameAlreadyExists &&
-                editMovie.get('movie').dirty
+                editMovie.get('movie').dirty,
+                error: true
             }"
           >
             A movie with this name already exists.
