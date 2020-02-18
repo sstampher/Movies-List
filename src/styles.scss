@@ -37,3 +37,29 @@ input {
         visibility: visible;
     }
 }
+
+.form {
+    display: grid;
+    grid-template-areas:
+      "label label"
+      "input submit";
+    grid-template-rows: 1fr 1.5fr;
+    grid-template-columns: 3fr 1fr;
+    @media (max-width: 800px) {
+      margin: 0.7em;
+    }
+    & .label {
+      grid-area: label;
+      margin-bottom: 0.4em;
+    }
+    & .input {
+      grid-area: input;
+      &.invalid {
+        border-color: $danger;
+        color: $danger;
+      }
+    }
+    & .button {
+      grid-area: submit;
+    }
+  }

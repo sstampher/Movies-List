@@ -40,9 +40,7 @@
   </div>
 
   <div class="content">
-    <header class="no-lists" *ngIf="lists.length === 0">
-      <h4 class="message"><em>There are no lists to display.</em></h4>
-    </header>
+      <h4 *ngIf="lists.length === 0" class="no-lists">There are no lists to display.</h4>
     <ul class="view-lists">
       <li class="item" *ngFor="let list of lists">
         <div class="description">
