@@ -59,7 +59,7 @@
         </form>
         <div class="movie-name" *ngIf="!movie.edit">{{ movie.name }}</div>
 
-        <form class="form"
+        <form class="form edit"
           *ngIf="movie.edit"
           [formGroup]="editMovie"
           (ngSubmit)="onSubmitEdit(movie.name)"
@@ -87,17 +87,29 @@
             +
           </button>
           <div
-            [ngClass]="{
-              invalid:
-                editMovie.get('movie').errors &&
-                editMovie.get('movie').errors.nameAlreadyExists &&
-                editMovie.get('movie').dirty,
-                error: true
-            }"
-          >
-            A movie with this name already exists.
-          </div>
+          [ngClass]="{
+            invalid:
+              editMovie.get('movie').errors &&
+              editMovie.get('movie').errors.nameAlreadyExists &&
+              editMovie.get('movie').dirty,
+              error: true
+          }"
+        >
+          A movie with this name already exists.
+        </div>
         </form>
+
+        <!-- <div
+        [ngClass]="{
+          invalid:
+            editMovie.get('movie').errors &&
+            editMovie.get('movie').errors.nameAlreadyExists &&
+            editMovie.get('movie').dirty,
+            error: true
+        }"
+      >
+        A movie with this name already exists.
+      </div> -->
 
         <div class="actions">
           <button class="button" (click)="onDeleteMovie(movie.name)">
