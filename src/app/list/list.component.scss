@@ -1,141 +1,157 @@
 @import "../../variables.scss";
 
+/*.......... Host Container ..........*/
+
 :host {
   display: block;
-  height: 90%;
-  width: 80%;
-  section {
-    &.lists {
-      height: 100%;
-      display: grid;
-      grid-template-areas:
-        "header header"
-        "create-list view-lists";
-      grid-template-columns: 1fr 3fr;
-      grid-template-rows: 1fr 6fr;
+  height: 95%;
+  width: 85%;
+  background-color: $background;
+  @include neumorphism(20px);
+}
+
+/*.......... Main Grid Container & Items ..........*/
+
+.lists {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "create-list view-lists";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 6fr;
+  @media (max-width: 800px) {
+    grid-template-areas:
+      "header"
+      "create-list"
+      "view-lists";
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.5fr 6fr;
+  }
+  & .header {
+    color: $dark-text;
+    grid-area: header;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 2px dotted $main-text;
+    margin-right: 2em;
+    margin-left: 2em;
+    @include border-gradient(right, 8);
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
+  }
+  & .create {
+    border-right: 2px dotted $main-text;
+    @include border-gradient(top, 4);
+    grid-area: create-list;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    margin-bottom: 2em;
+    @media (max-width: 800px) {
+      justify-content: center;
+      margin-top: 0em;
+      margin-bottom: 0em;
+    }
+  }
+  & .content {
+    // chg name
+    grid-area: view-lists;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @media (max-width: 800px) {
+      margin-top: 0em;
+      margin-bottom: 0em;
+    }
+  }
+}
+
+/*.......... Content ..........*/
+
+.title {
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
+.form {
+  margin: 3em;
+  display: grid;
+  grid-template-areas:
+    "label label"
+    "input submit";
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-columns: 3fr 1fr;
+  @media (max-width: 800px) {
+    margin: 0.7em;
+  }
+  & .label {
+    grid-area: label;
+    margin-bottom: 0.4em;
+  }
+  input {
+    // fix this by toggling class
+    grid-area: input;
+    &.invalid {
+      border-color: $danger;
+      color: $danger;
+    }
+  }
+  & .button {
+    grid-area: submit;
+  }
+}
+
+.no-lists {
+  & .message {
+    margin-top: 3em;
+  }
+}
+
+.view-lists {
+  width: 70%;
+  margin: 1.5em;
+  & .item {
+    list-style: none;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1.5em 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include neumorphism(20px);
+    @media (max-width: 800px) {
+      flex-direction: column;
+      padding: 1.5em;
+    }
+    & .description {
+      grid-area: name;
+      @media (max-width: 450px) {
+        text-align: center;
+      }
+      & .list-name {
+        margin-bottom: 1em;
+      }
+      & .counter {
+        font-style: italic;
+        grid-area: counter;
+        @media (max-width: 450px) {
+          text-align: center;
+        }
+      }
+    }
+    & .actions {
+      display: flex;
+      flex-direction: row;
       @media (max-width: 800px) {
-        grid-template-areas:
-          "header"
-          "create-list"
-          "view-lists";
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 6fr;
+        margin-top: 1em;
       }
-      header {
-        color: $dark-text;
-        &.main {
-          grid-area: header;
-          display: flex;
-          justify-content: left;
-          align-items: center;
-          @media (max-width: 800px) {
-            justify-content: center;
-          }
-          h3 {
-            margin-right: 2em;
-            margin-left: 2em;
-          }
-        }
-      }
-      .create-list {
-        grid-area: create-list;
-        display: flex;
-        flex-direction: column;
-        justify-content: top;
-        align-items: center;
-        margin-top: 2em;
-        margin-bottom: 2em;
-        @media (max-width: 800px) {
-          justify-content: center;
-          margin-top: 0em;
-          margin-bottom: 0em;
-        }
-        form {
-          display: grid;
-          grid-template-areas:
-            "label label"
-            "input submit";
-          grid-template-rows: 1fr 3fr;
-          grid-template-columns: 3fr 1fr;
-          label {
-            grid-area: label;
-            text-align: center;
-            margin-bottom: 0.4em;
-          }
-          input {
-            grid-area: input;
-            &.invalid {
-              border-color: $danger;
-              color: $danger;
-            }
-          }
-          button {
-            grid-area: submit;
-          }
-        }
-        div {
-          visibility: hidden;
-          &.invalid {
-            visibility: visible;
-            color: $danger;
-          }
-        }
-      }
-      .view-lists {
-        grid-area: view-lists;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        height: 100%;
-        overflow-y: auto;
-        margin-top: 2em;
-        margin-bottom: 2em;
-        @media (max-width: 800px) {
-          margin-top: 0em;
-          margin-bottom: 0em;
-        }
-        ul {
-          width: 68%;
-          margin: 1.5em;
-          li {
-            list-style: none;
-            border: 1.5px solid $main-text;
-            background-color: $grad4;
-            margin: 0.2em;
-            padding: 1.5em 3em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            @media (max-width: 800px) {
-              flex-direction: column;
-              padding: 1.5em;
-            }
-            &:hover {
-              background-color: darken($background, 10%);
-            }
-            h3 {
-              grid-area: name;
-              @media (max-width: 450px) {
-                text-align: center;
-              }
-            }
-            .buttons {
-              display: flex;
-              flex-direction: row;
-              @media (max-width: 800px) {
-                margin-top: 1em;
-              }
-            }
-            p {
-              font-style: italic;
-              grid-area: counter;
-              @media (max-width: 450px) {
-                text-align: center;
-              }
-            }
-          }
-        }
-      }
+    }
+    &:hover {
+      background-color: darken($background, 3%);
     }
   }
 }

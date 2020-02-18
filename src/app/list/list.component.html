@@ -1,26 +1,26 @@
 <section class="lists">
-  <header class="main">
-    <h1>My Movie Lists</h1>
+
+  <header class="header">
+    <h1 class="title">My Movie Lists</h1>
   </header>
 
-  <div class="create-list">
-    <form [formGroup]="newList" (ngSubmit)="onSubmit()">
+  <div class="create">
+    <form class="form" [formGroup]="newList" (ngSubmit)="onSubmit()">
       <!-- labels, placeholder caps (all caps font is good) -->
-      <label for="add-list"
-        >Add a new list</label>
-        <input
-          [ngClass]="{
-            invalid:
-              newList.get('name').errors &&
-              newList.get('name').errors.nameAlreadyExists
-          }"
-          type="text"
-          id="add-list"
-          formControlName="name"
-          placeholder="list name"
+      <label class="label" for="add-list">Add a new list</label>
+      <input
+        [ngClass]="{
+          invalid:
+            newList.get('name').errors &&
+            newList.get('name').errors.nameAlreadyExists
+        }"
+        type="text"
+        id="add-list"
+        formControlName="name"
+        placeholder="list name"
       />
       <!--needs hover cursor -->
-      <button type="submit" [disabled]="newList.get('name').errors">
+      <button class="button" type="submit" [disabled]="newList.get('name').errors">
         +
       </button>
     </form>
@@ -37,23 +37,25 @@
     </div>
   </div>
 
-  <div class="view-lists">
-    <header *ngIf="lists.length === 0">
-      <h4><em>There are no lists to display.</em></h4>
+  <div class="content">
+    <header class="no-lists" *ngIf="lists.length === 0">
+      <h4 class="message"><em>There are no lists to display.</em></h4>
     </header>
-    <ul *ngFor="let list of lists">
-      <li>
-        <div class="list-description">
-        <h3>{{ list.name }}</h3>
-        <p>
-          {{ watchedCounter(list.name) }} of
-          {{ movieCounter(list.name) }} movies watched.
-        </p>
+    <ul class="view-lists">
+      <li class="item" *ngFor="let list of lists">
+        <div class="description">
+          <h3 class="list-name">{{ list.name }}</h3>
+          <p class="counter">
+            {{ watchedCounter(list.name) }} of
+            {{ movieCounter(list.name) }} movies watched.
+          </p>
         </div>
-        <div class="buttons">
-        <button class="delete" (click)="onDeleteList(list.name)">Delete</button>
-        <button class="view" [routerLink]="['/list', list.name]">View</button>
-  </div>
+        <div class="actions">
+          <button class="button" (click)="onDeleteList(list.name)">
+            Delete
+          </button>
+          <button class="button" [routerLink]="['/list', list.name]">View</button>
+        </div>
       </li>
     </ul>
   </div>

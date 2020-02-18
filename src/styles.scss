@@ -5,6 +5,7 @@
 body {
     background-color: $background;
     box-sizing: border-box;
+    //overflow: hidden;
 }
 
 * {
@@ -14,10 +15,10 @@ body {
 
 button {
     padding: .7em; 
-    border: 2px solid $main-text;
-    background: $background;
+    border: none;
     margin-right: .5em;
     margin-left: .5em;
+    @include neumorphism(50px);
 }
 
 input {
