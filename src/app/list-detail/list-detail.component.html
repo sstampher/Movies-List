@@ -1,11 +1,11 @@
-<section class="list">
-  <header>
+<section class="movies">
+  <header class="header">
     <!-- maybe get rid of list[0] -->
-    <h1>{{ list[0].name }}</h1>
+    <h1 class="title">{{ list[0].name }}</h1>
   </header>
-  <div class="add-movie">
-    <form [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()" (keyup)="searchMovies(newMovie.get('movie').value)">
-      <label for="add-movie">Add a new movie</label>
+  <div class="add">
+    <form class="form" [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()" (keyup)="searchMovies(newMovie.get('movie').value)">
+      <label class="label" for="add-movie">Add a new movie</label>
       <input
         id="add-movie"
         [ngClass]="{
@@ -25,8 +25,8 @@
       </datalist>
    
 
-      <button type="submit" [disabled]="newMovie.get('movie').errors">
-        Submit
+      <button class="button" type="submit" [disabled]="newMovie.get('movie').errors">
+        +
       </button>
     </form>
 
@@ -42,17 +42,27 @@
     </div>
   </div>
 
-  <div class="view-movies">
-    <ul>
-      <li *ngFor="let movie of list[0].movies">
-        <div *ngIf="!movie.edit">{{ movie.name }}</div>
+  <div class="view">
+      <h4 class="no-lists" *ngIf="list[0].movies.length === 0"><em>There are no movies to display.</em></h4>
+    <ul class="movies-list">
+      <li class="movie" *ngFor="let movie of list[0].movies">
+        <form class="checkbox">
+          <input
+          class="input"
+            id="checkbox"
+            type="checkbox"
+            (change)="onCheck(movie.name)"
+            [checked]="movie.watched"
+          />
+        </form>
+        <div class="movie-name" *ngIf="!movie.edit">{{ movie.name }}</div>
 
-        <form
+        <form class="form"
           *ngIf="movie.edit"
           [formGroup]="editMovie"
           (ngSubmit)="onSubmitEdit(movie.name)"
         >
-          <label for="edit-movie">Edit your movie name</label>
+          <label class="label" for="edit-movie">Edit your movie name</label>
           <input
             id="edit-movie"
             [ngClass]="{
@@ -65,13 +75,13 @@
             formControlName="movie"
             [value]="movie.name"
           />
-          <datalist id="suggested-movies">
+          <!-- <datalist id="suggested-movies">
             <option value="test1"> </option>
             <option value="test2"> </option>
-          </datalist>
+          </datalist> -->
 
-          <button type="submit" [disabled]="editMovie.get('movie').errors">
-            Submit
+          <button class="button" type="submit" [disabled]="editMovie.get('movie').errors">
+            +
           </button>
           <div
             [ngClass]="{
@@ -86,20 +96,11 @@
         </form>
 
         <div class="actions">
-          <button class="delete" (click)="onDeleteMovie(movie.name)">
+          <button class="button" (click)="onDeleteMovie(movie.name)">
             Delete
           </button>
           <!-- warn on delete -->
-          <button class="edit" (click)="onClickEdit(movie.name)">Edit</button>
-          <form>
-            <label for="checkbox" *ngIf="!movie.watched">Mark as Watched</label>
-            <input
-              id="checkbox"
-              type="checkbox"
-              (change)="onCheck(movie.name)"
-              [checked]="movie.watched"
-            />
-          </form>
+          <button class="button" (click)="onClickEdit(movie.name)">Edit</button>
         </div>
       </li>
     </ul>

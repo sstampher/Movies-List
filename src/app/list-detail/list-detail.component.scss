@@ -3,132 +3,136 @@
 :host {
   display: block;
   height: 90%;
-  width: 80%;
+  width: 85%;
   background-color: $background;
-  section {
-    &.list {
-      height: 100%;
-      background-color: $background;
-      display: grid;
-      grid-template-areas:
-        "header header"
-        "add-movie view-movies";
-      grid-template-columns: 1fr 3fr;
-      grid-template-rows: 1fr 6fr;
+  @include neumorphism(20px);
+}
+
+/*.......... Main Grid Container & Items ..........*/
+
+.movies {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "add-movie view-movies";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 6fr;
+  @media (max-width: 800px) {
+    grid-template-areas:
+      "header"
+      "add-movie"
+      "view-movies";
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.5fr 6fr;
+  }
+  & .header {
+    grid-area: header;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-right: 2em;
+    margin-left: 2em;
+    border-bottom: 2px dotted $main-text;
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
+  }
+  & .add {
+    border-right: 2px dotted $main-text;
+    grid-area: add-movie;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    margin-bottom: 2em;
+    @media (max-width: 800px) {
+      justify-content: center;
+      margin-top: 0em;
+      margin-bottom: 0em;
+    }
+  }
+  & .view {
+    grid-area: view-movies;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+/*.......... Content ..........*/
+
+.title {
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
+.form {
+  margin: 3em;
+  display: grid;
+  grid-template-areas:
+    "label label"
+    "input submit";
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-columns: 3fr 1fr;
+  @media (max-width: 800px) {
+    margin: 0.7em;
+  }
+  label {
+    grid-area: label;
+    //text-align: center;
+    margin-bottom: 0.4em;
+  }
+  input {
+    grid-area: input;
+    &.invalid {
+      border-color: $danger;
+      color: $danger;
+    }
+  }
+  button {
+    grid-area: submit;
+  }
+}
+
+.no-lists {
+  margin-top: 3em;
+}
+
+.movies-list {
+  width: 80%;
+  margin: 1.5em;
+  & .movie {
+    list-style: none;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1.5em 3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include neumorphism(20px);
+    @media (max-width: 800px) {
+      flex-direction: column;
+      padding: 1.5em;
+    }
+    &:hover {
+      background-color: darken($background, 3%);
+    }
+    & .checkbox {
+      flex: 0.5;
+      & .label {
+        visibility: hidden;
+      }
+    }
+    & .movie-name {
+      flex: 1;
+    }
+    & .actions {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
       @media (max-width: 800px) {
-        grid-template-areas:
-          "header"
-          "add-movie"
-          "view-movies";
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 6fr;
-      }
-      header {
-        grid-area: header;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        @media (max-width: 800px) {
-          justify-content: center;
-        }
-        h1 {
-          margin-right: 2em;
-          margin-left: 2em;
-        }
-      }
-      .add-movie {
-        grid-area: add-movie;
-        display: flex;
-        flex-direction: column;
-        justify-content: top;
-        align-items: center;
-        margin-top: 2em;
-        margin-bottom: 2em;
-        @media (max-width: 800px) {
-          justify-content: center;
-          margin-top: 0em;
-          margin-bottom: 0em;
-        }
-        form {
-          display: grid;
-          grid-template-areas:
-            "label label"
-            "input submit";
-          grid-template-rows: 1fr 3fr;
-          grid-template-columns: 3fr 1fr;
-          label {
-            grid-area: label;
-            text-align: center;
-            margin-bottom: 0.4em;
-          }
-          input {
-            grid-area: input;
-            &.invalid {
-              border-color: $danger;
-              color: $danger;
-            }
-          }
-          button {
-            grid-area: submit;
-          }
-        }
-        div {
-          visibility: hidden;
-          &.invalid {
-            visibility: visible;
-            color: $danger;
-          }
-        }
-      }
-      .view-movies {
-        grid-area: view-movies;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        ul {
-          width: 80%;
-          li {
-            border: 2px solid $grad8;
-            list-style: none;
-            margin: 0.2em;
-            padding: 1.5em 3em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            &:hover {
-              background-color: papayawhip;
-            }
-            @media (max-width: 800px) {
-              flex-direction: column;
-            }
-            div {
-              flex: 1;
-            }
-            form {
-              input {
-                &.invalid {
-                  border-color: $danger;
-                  color: $danger;
-                }
-              }
-              div {
-                visibility: hidden;
-                &.invalid {
-                  visibility: visible;
-                  color: $danger;
-                }
-              }
-            }
-            .actions {
-              flex: 1;
-              display: flex;
-              flex-direction: row;
-              @media (max-width: 800px) {
-                margin-top: 1em;
-              }
-            }
-          }
-        }
+        margin-top: 1em;
       }
     }
   }

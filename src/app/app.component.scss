@@ -11,8 +11,8 @@
     grid-template-rows: 1fr 6fr 1fr;
     header {
         grid-area: header;
-        border-bottom: 7px solid $main-text;
-        @include border-gradient;
+        //border-bottom: 7px solid $main-text;
+        //@include border-gradient;
     } 
 
     main {
