@@ -8,7 +8,7 @@
   width: 85%;
   background-color: $background;
   @include neumorphism(20px, $background);
-  @media (max-width: $tablet){
+  @media (max-width: $tablet) {
     box-shadow: none;
   }
 }
@@ -37,10 +37,9 @@
     justify-content: left;
     align-items: center;
     color: $dark-text;
-    border-bottom: 1px dotted $main-text;
+    border-bottom: 3px dotted $accent;
     margin-right: 2em;
     margin-left: 2em;
-    @include border-gradient(right, 8);
     @media (max-width: $tablet) {
       justify-content: center;
       border-bottom: none;
@@ -54,8 +53,7 @@
     justify-content: top;
     align-items: center;
     margin-bottom: 2em;
-    border-right: 1px dotted $main-text;
-    @include border-gradient(top, 4);
+    border-right: 3px dotted $accent;
     @media (max-width: $tablet) {
       justify-content: center;
       margin-top: 0em;
@@ -64,8 +62,7 @@
       border-image: none;
     }
   }
-  & .content {
-    // chg name
+  & .view {
     grid-area: view-lists;
     display: flex;
     align-items: center;
@@ -93,14 +90,14 @@
 .form {
   margin: 3em 3em 1em;
   @media (max-width: $tablet) {
-    margin-top: .7em;
+    margin-top: 0.7em;
   }
 }
 
 .no-lists {
-    margin-top: 1em;
-    font-style: italic;
-    color: $main-text;
+  margin-top: 1em;
+  font-style: italic;
+  color: $main-text;
 }
 
 .view-lists {
@@ -128,11 +125,12 @@
         text-align: center;
       }
       & .list-name {
-        margin-bottom: .3em;
+        margin-bottom: 0.3em;
         font-size: 1.2em;
       }
       & .counter {
         font-style: italic;
+        font-size: .8em;
         color: $main-text;
         @media (max-width: $phone) {
           text-align: center;
@@ -146,10 +144,10 @@
       }
     }
     &:hover {
-         @include neumorphism-invert(20px, $background-dark);
-         & .button {
-          background-color: $background;
-        }
+      @include neumorphism-invert(20px, $background-dark);
+      & .button {
+        background-color: $background;
+      }
     }
   }
 }

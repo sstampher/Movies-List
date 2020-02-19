@@ -7,17 +7,11 @@ import { ListComponent } from "./list/list.component";
 import { DataService } from "./data.service";
 import { ListDetailComponent } from "./list-detail/list-detail.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HomeComponent } from "./home/home.component";
-import { HttpClientModule } from '@angular/common/http';
-import { MoviesApiService } from './movies-api.service';
+import { HttpClientModule } from "@angular/common/http";
+import { MoviesApiService } from "./movies-api.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListComponent,
-    ListDetailComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, ListComponent, ListDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,8 +19,7 @@ import { MoviesApiService } from './movies-api.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "", component: HomeComponent },
-      { path: "home", component: HomeComponent },
+      { path: "", component: ListComponent },
       { path: "lists", component: ListComponent },
       { path: "list/:name", component: ListDetailComponent }
     ])

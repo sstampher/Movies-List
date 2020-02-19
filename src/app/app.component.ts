@@ -6,12 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
-  title = 'Movies-List-App';
-  values = [];
-  
-  onCreateList(value: string) {
-    this.values.push({name:value, movies:[]});
-  }
-
-}
+export class AppComponent {}

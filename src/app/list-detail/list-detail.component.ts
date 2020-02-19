@@ -11,24 +11,21 @@ import {
 } from "@angular/forms";
 import { Observable, of, Subject } from "rxjs";
 import { delay, map } from "rxjs/operators";
-import { MoviesApiService } from '../movies-api.service';
+import { MoviesApiService } from "../movies-api.service";
 
 @Component({
   selector: "app-list-detail",
   templateUrl: "./list-detail.component.html",
   styleUrls: ["./list-detail.component.scss"]
 })
-
 export class ListDetailComponent implements OnInit {
   list = [];
-  listName = "";
+  listName: string = "";
   searchQuery = new Subject<string>();
   searchResults = [];
 
   newMovie = this.formBuilder.group({
-    movie: new FormControl("", Validators.required,
-      this.uniqueNameValidator()
-    )
+    movie: new FormControl("", Validators.required, this.uniqueNameValidator())
   });
   editMovie = this.formBuilder.group({
     movie: new FormControl("", Validators.required, this.uniqueNameValidator())
@@ -40,10 +37,9 @@ export class ListDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
-    this.movies.search(this.searchQuery)
-      .subscribe(results => {
-        this.searchResults = results['Search'];
-      });
+    this.movies.search(this.searchQuery).subscribe(results => {
+      this.searchResults = results["Search"];
+    });
   }
 
   ngOnInit() {
@@ -110,7 +106,7 @@ export class ListDetailComponent implements OnInit {
 
   /*........ Api Search Functions ........*/
 
-  searchMovies(query: string){
+  searchMovies(query: string) {
     this.searchQuery.next(query);
   }
 }
