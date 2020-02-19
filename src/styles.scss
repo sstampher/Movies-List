@@ -5,6 +5,8 @@
 body {
     background-color: $background-dark;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: $dark-text;
     @media (max-width: $tablet) {
       background-color: $background;
     }
@@ -13,6 +15,11 @@ body {
 * {
     margin: 0;
     padding: 0;
+}
+
+h1, h2, h3 {
+  color: $dark-text;
+  font-family: 'Poiret One', serif;
 }
 
 button {
@@ -30,8 +37,8 @@ button {
 }
 
 input {
-    background: none;
-    border: 1.5px solid grey;
+    background-color: transparent;
+    border: 1.4px solid $dark-text;
     padding: .5em;
     border-radius: 0px;
     &:focus {
@@ -60,6 +67,7 @@ input {
     & .label {
       grid-area: label;
       margin-bottom: 0.4em;
+
     }
     & .input {
       grid-area: input;

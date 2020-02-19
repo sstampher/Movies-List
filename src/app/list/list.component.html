@@ -40,11 +40,11 @@
   </div>
 
   <div class="content">
-      <h4 *ngIf="lists.length === 0" class="no-lists">There are no lists to display.</h4>
+      <p *ngIf="lists.length === 0" class="no-lists">There are no lists to display.</p>
     <ul class="view-lists">
       <li class="item" *ngFor="let list of lists">
         <div class="description">
-          <h3 class="list-name">{{ list.name }}</h3>
+          <p class="list-name">{{ list.name }}</p>
           <p class="counter">
             {{ watchedCounter(list.name) }} of
             {{ movieCounter(list.name) }} movies watched.

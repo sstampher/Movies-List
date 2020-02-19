@@ -37,7 +37,7 @@
     justify-content: left;
     align-items: center;
     color: $dark-text;
-    border-bottom: 2px dotted $main-text;
+    border-bottom: 1px dotted $main-text;
     margin-right: 2em;
     margin-left: 2em;
     @include border-gradient(right, 8);
@@ -54,7 +54,7 @@
     justify-content: top;
     align-items: center;
     margin-bottom: 2em;
-    border-right: 2px dotted $main-text;
+    border-right: 1px dotted $main-text;
     @include border-gradient(top, 4);
     @media (max-width: $tablet) {
       justify-content: center;
@@ -93,13 +93,14 @@
 .form {
   margin: 3em 3em 1em;
   @media (max-width: $tablet) {
-    margin:0;
+    margin-top: .7em;
   }
 }
 
 .no-lists {
     margin-top: 1em;
     font-style: italic;
+    color: $main-text;
 }
 
 .view-lists {
@@ -107,15 +108,15 @@
   margin-right: auto;
   margin-left: auto;
   & .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     background-color: $background-light;
     list-style: none;
     margin-top: 1em;
     margin-bottom: 1em;
     padding: 1em 2em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
     @include neumorphism(20px, $background-light);
     @media (max-width: $phone) {
       flex-direction: column;
@@ -128,9 +129,11 @@
       }
       & .list-name {
         margin-bottom: .3em;
+        font-size: 1.2em;
       }
       & .counter {
         font-style: italic;
+        color: $main-text;
         @media (max-width: $phone) {
           text-align: center;
         }

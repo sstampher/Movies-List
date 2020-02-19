@@ -45,7 +45,7 @@
   </div>
 
   <div class="view">
-      <h4 class="no-lists" *ngIf="list[0].movies.length === 0"><em>There are no movies to display.</em></h4>
+      <p class="no-lists" *ngIf="list[0].movies.length === 0">There are no movies to display.</p>
     <ul class="movies-list">
       <li [ngClass]="{
         unwatched:
