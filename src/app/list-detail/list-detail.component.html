@@ -47,7 +47,12 @@
   <div class="view">
       <h4 class="no-lists" *ngIf="list[0].movies.length === 0"><em>There are no movies to display.</em></h4>
     <ul class="movies-list">
-      <li class="movie" *ngFor="let movie of list[0].movies">
+      <li [ngClass]="{
+        unwatched:
+          !movie.watched,
+          watched: movie.watched,
+          movie: true
+      }" *ngFor="let movie of list[0].movies">
         <div class="movie-name" *ngIf="!movie.edit">
         <form class="checkbox">
           <input

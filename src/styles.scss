@@ -18,6 +18,12 @@ button {
     margin-right: .5em;
     margin-left: .5em;
     @include neumorphism(50px);
+    &:hover {
+        @include neumorphism-invert(50px, $background);
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
 input {

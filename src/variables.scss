@@ -26,6 +26,13 @@ $grad11: rgb(254, 175, 160);
              1px -1px 3px #ddefef;
 }
 
+@mixin neumorphism-invert($radius, $color) {
+  border-radius: $radius;
+  background: $color;
+  box-shadow:  inset -1px 1px 6px #a7b5b5, 
+  inset 1px -1px 6px #ddefef;
+}
+
 @mixin border-gradient($direction, $repitition) {
     border-image: linear-gradient(
         to $direction,
@@ -38,8 +45,7 @@ $grad11: rgb(254, 175, 160);
         $grad6 60% 70%,
         $grad5 70% 80%,
         $grad4 80% 90%,
-        $grad3 90% 100%
-        
+        $grad3 90% 100%    
       )
       $repitition round;
 }
