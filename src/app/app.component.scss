@@ -25,6 +25,7 @@
       justify-content: space-between;
       align-items: flex-start;
       padding: 1em;
+      border-bottom: 1px dotted $main-text;
     }
   }
   main {
@@ -42,9 +43,14 @@
 /*.......... Content ..........*/
 
 .app-title {
-  margin-right: 1em;
+  margin-right: 1.5em;
   margin-left: .5em;
   white-space: nowrap;
+}
+
+.icon {
+  padding-left: .25em;
+  color: darken($grad7, 8%);
 }
 
 .nav-items {
@@ -53,12 +59,14 @@
     list-style: none;
     & .nav-link {
       display: block;
+      color: $dark-text;
       text-decoration: none;
       padding: 0.5em .7em;
       white-space: nowrap;
       @include neumorphism(0px, $background);
       &:hover {
         @include neumorphism-invert(0px, $background-darkest);
+        color: $danger;
       }
     }
   }

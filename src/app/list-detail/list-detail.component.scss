@@ -89,7 +89,7 @@
 .form {
   margin: 3em 3em 1em;
   @media (max-width: $tablet) {
-    margin:0;
+    margin-top: .7em;
   }
   &.edit{
     margin: 0;
@@ -102,10 +102,11 @@
 .no-lists {
   margin-top: 1em;
     font-style: italic;
+    color: $main-text;
 }
 
 .movies-list {
-  width: 68%;
+  width: 88%;
   margin-right: auto;
   margin-left: auto;
   & .movie {
@@ -122,7 +123,8 @@
       flex-direction: column;
       padding: 0;
     }
-    &.watched {     @include neumorphism-invert(20px, $background-dark);
+    &.watched {     
+      @include neumorphism-invert(20px, $background-dark);
       &:hover {
         @include neumorphism-invert(20px, $background-dark);
       }
