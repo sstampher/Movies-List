@@ -7,7 +7,7 @@
   height: 95%;
   width: 85%;
   background-color: $background;
-  @include neumorphism(20px);
+  @include neumorphism(20px, $background);
   @media (max-width: $tablet){
     box-shadow: none;
   }
@@ -23,7 +23,7 @@
     "add-movie view-movies";
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 6fr;
-  @media (max-width: 800px) {
+  @media (max-width: $tablet) {
     grid-template-areas:
       "header"
       "add-movie"
@@ -39,7 +39,8 @@
     margin-right: 2em;
     margin-left: 2em;
     border-bottom: 2px dotted $main-text;
-    @media (max-width: 800px) {
+    @include border-gradient(right, 8);
+    @media (max-width: $tablet) {
       justify-content: center;
       border: none;
     }
@@ -52,7 +53,8 @@
     align-items: center;
     margin-bottom: 2em;
     border-right: 2px dotted $main-text;
-    @media (max-width: 800px) {
+    @include border-gradient(top, 4);
+    @media (max-width: $tablet) {
       justify-content: center;
       margin-top: 0em;
       margin-bottom: 0em;
@@ -76,8 +78,14 @@
 
 .form {
   margin: 3em 3em 1em;
+  @media (max-width: $tablet) {
+    margin:0;
+  }
   &.edit{
     margin: 0;
+    @media (max-width: $phone) {
+      padding: .8em;
+    }
   }
 }
 
@@ -92,25 +100,20 @@
     list-style: none;
     margin-top: 1em;
     margin-bottom: 1em;
-    padding: 1.5em 3em;
+    padding: 1em 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    @include neumorphism(20px);
-    @media (max-width: 800px) {
+    @include neumorphism(20px, $background-light);
+    @media (max-width: $phone) {
       flex-direction: column;
-      //padding: 1.5em;
       padding: 0;
     }
-    &.watched {
-      background-color: lighten($grad11, 5%);
+    &.watched {     @include neumorphism-invert(20px, $background-dark);
       &:hover {
-        @include neumorphism-invert(20px, $grad11);
+        @include neumorphism-invert(20px, $background-dark);
       }
-    }
-    &:hover {
-      @include neumorphism-invert(20px, $background);
     }
     & .movie-name {
       display: flex;
@@ -121,8 +124,14 @@
     }
     & .actions {
       display: flex;
-      @media (max-width: $tablet) {
+      @media (max-width: $phone) {
        padding-bottom: 1em;
+      }
+    }
+    &:hover {
+      @include neumorphism-invert(20px, $background-dark);
+      & .button {
+        background-color: $background;
       }
     }
   }

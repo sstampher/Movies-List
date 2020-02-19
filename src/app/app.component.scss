@@ -19,7 +19,12 @@
     @media (max-width: $tablet) {
       justify-content: flex-start;
       align-items: flex-start;
-      padding-top: 1em;
+      padding: 1em;
+    }
+    @media (max-width:$phone) {
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1em;
     }
   }
   main {
@@ -51,9 +56,9 @@
       text-decoration: none;
       padding: 0.5em .7em;
       white-space: nowrap;
-      @include neumorphism(0px);
+      @include neumorphism(0px, $background);
       &:hover {
-        @include neumorphism-invert(0px, $background);
+        @include neumorphism-invert(0px, $background-darkest);
       }
     }
   }

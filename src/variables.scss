@@ -1,6 +1,9 @@
 /*.......... Colors ..........*/
 
 $background: rgb(194, 210, 210);
+$background-dark: darken($background, .8%);
+$background-light: lighten($background, .8%);
+$background-darkest: darken($background, 2%);
 $main-text: rgb(116, 128, 129);
 $dark-text: darken($main-text, 20%);
 $danger:  rgb(252, 102, 72);
@@ -19,18 +22,18 @@ $grad11: rgb(254, 175, 160);
 
 /*.......... Mixins ..........*/
 
-@mixin neumorphism($radius) {
+@mixin neumorphism($radius, $color) {
   border-radius: $radius;
-  background: $background;
-  box-shadow:  -1px 1px 3px #a7b5b5, 
-             1px -1px 3px #ddefef;
+  background: $color;
+  box-shadow:  -1px 1px 3px #8d9999, 
+             1px -1px 3px #ecfdfd;
 }
 
 @mixin neumorphism-invert($radius, $color) {
   border-radius: $radius;
   background: $color;
-  box-shadow:  inset -1px 1px 6px #a7b5b5, 
-  inset 1px -1px 6px #ddefef;
+  box-shadow:  inset -1px 1px 6px #8d9999, 
+  inset 1px -1px 6px #ecfdfd;
 }
 
 @mixin border-gradient($direction, $repitition) {
@@ -52,5 +55,5 @@ $grad11: rgb(254, 175, 160);
 
 /*.......... Viewport Sizes ..........*/
 
-$phone: 500px;
-$tablet: 800px;
+$phone: 750px;
+$tablet: 1000px;

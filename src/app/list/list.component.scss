@@ -7,7 +7,7 @@
   height: 95%;
   width: 85%;
   background-color: $background;
-  @include neumorphism(20px);
+  @include neumorphism(20px, $background);
   @media (max-width: $tablet){
     box-shadow: none;
   }
@@ -23,7 +23,7 @@
     "create-list view-lists";
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 6fr;
-  @media (max-width: 800px) {
+  @media (max-width: $tablet) {
     grid-template-areas:
       "header"
       "create-list"
@@ -41,7 +41,7 @@
     margin-right: 2em;
     margin-left: 2em;
     @include border-gradient(right, 8);
-    @media (max-width: 800px) {
+    @media (max-width: $tablet) {
       justify-content: center;
       border-bottom: none;
       border-image: none;
@@ -100,18 +100,19 @@
   width: 68%;
   margin: 1.5em auto;
   & .item {
+    background-color: $background-light;
     list-style: none;
     margin-top: 1em;
     margin-bottom: 1em;
-    padding: 1.5em 3em;
+    padding: 1em 2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    @include neumorphism(20px);
-    @media (max-width: $tablet) {
+    @include neumorphism(20px, $background-light);
+    @media (max-width: $phone) {
       flex-direction: column;
-      //padding: 1.5em;
+      padding: 0;
     }
     & .description {
       margin: 1em;
@@ -119,7 +120,7 @@
         text-align: center;
       }
       & .list-name {
-        margin-bottom: 1em;
+        margin-bottom: .3em;
       }
       & .counter {
         font-style: italic;
@@ -135,7 +136,10 @@
       }
     }
     &:hover {
-         @include neumorphism-invert(20px, $background);
+         @include neumorphism-invert(20px, $background-dark);
+         & .button {
+          background-color: $background;
+        }
     }
   }
 }
