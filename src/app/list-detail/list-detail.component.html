@@ -48,6 +48,7 @@
       <h4 class="no-lists" *ngIf="list[0].movies.length === 0"><em>There are no movies to display.</em></h4>
     <ul class="movies-list">
       <li class="movie" *ngFor="let movie of list[0].movies">
+        <div class="movie-name" *ngIf="!movie.edit">
         <form class="checkbox">
           <input
           class="input"
@@ -57,7 +58,7 @@
             [checked]="movie.watched"
           />
         </form>
-        <div class="movie-name" *ngIf="!movie.edit">{{ movie.name }}</div>
+        {{ movie.name }}</div>
 
         <form class="form edit"
           *ngIf="movie.edit"
@@ -115,7 +116,6 @@
           <button class="button" (click)="onDeleteMovie(movie.name)">
             Delete
           </button>
-          <!-- warn on delete -->
           <button class="button" (click)="onClickEdit(movie.name)">Edit</button>
         </div>
       </li>
