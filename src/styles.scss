@@ -1,86 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import './variables.scss';
+@import "./variables.scss";
 
 body {
-    background-color: $background-dark;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: $dark-text;
-    @media (max-width: $tablet) {
-      background-color: $background;
-    }
+  background-color: $background-dark;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: $dark-text;
+  @media (max-width: $tablet) {
+    background-color: $background;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: $dark-text;
-  font-family: 'Poiret One', serif;
+  font-family: "Poiret One", serif;
 }
 
 button {
-    padding: .7em; 
-    border: none;
-    margin-right: .5em;
-    margin-left: .5em;
-    @include neumorphism(50px, $background-light);
-    &:hover {
-        @include neumorphism-invert(50px, $background-darkest);
-    }
-    &:focus {
-        outline: none;
-    }
+  padding: 0.7em;
+  border: none;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  @include neumorphism(50px, $background-light);
+  &:hover {
+    @include neumorphism-invert(50px, $background-darkest);
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 input {
-    background-color: transparent;
-    border: 1.4px solid $dark-text;
-    padding: .5em;
-    border-radius: 0px;
-    &:focus {
-        outline: none;
-    }
+  background-color: transparent;
+  border: 1.4px solid $dark-text;
+  padding: 0.5em;
+  border-radius: 0px;
+  &:focus {
+    outline: none;
+  }
 }
 
 .error {
-    visibility: hidden;
-    &.invalid {
-        color: $danger;
-        visibility: visible;
-    }
+  visibility: hidden;
+  &.invalid {
+    visibility: visible;
+    color: $danger;
+  }
 }
 
 .form {
-    display: grid;
-    grid-template-areas:
-      "label label"
-      "input submit";
-    grid-template-rows: 1fr 1.5fr;
-    grid-template-columns: 3fr 1fr;
-    @media (max-width: 800px) {
-      margin: 0.7em;
-    }
-    & .label {
-      grid-area: label;
-      margin-bottom: 0.4em;
-
-    }
-    & .input {
-      grid-area: input;
-      &.invalid {
-        border-color: $danger;
-        color: $danger;
-      }
-    }
-    & .button {
-      grid-area: submit;
-      @include neumorphism(50px, $background-light);
-      &:hover {
-        @include neumorphism-invert(50px, $background-dark);
-    }
+  display: grid;
+  grid-template-areas:
+    "label label"
+    "input submit";
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-columns: 3fr 1fr;
+  // @media (max-width: $tablet) {
+  //   margin: 0.7em;
+  // }
+  & .label {
+    grid-area: label;
+    margin-bottom: 0.4em;
+  }
+  & .input {
+    grid-area: input;
+    &.invalid {
+      border-color: $danger;
+      color: $danger;
     }
   }
+  & .button {
+    grid-area: submit;
+    @include neumorphism(50px, $background-light);
+    &:hover {
+      @include neumorphism-invert(50px, $background-dark);
+    }
+  }
+}

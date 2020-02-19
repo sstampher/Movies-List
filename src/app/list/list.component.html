@@ -1,46 +1,47 @@
 <section class="lists">
-
   <header class="header">
     <h1 class="title">My Movie Lists</h1>
   </header>
 
   <div class="create">
     <form class="form" [formGroup]="newList" (ngSubmit)="onSubmit()">
-      <!-- labels, placeholder caps (all caps font is good) -->
       <label class="label" for="add-list">Add a new list</label>
       <input
         [ngClass]="{
           invalid:
             newList.get('name').errors &&
             newList.get('name').errors.nameAlreadyExists,
-            input: true
+          input: true
         }"
         type="text"
         id="add-list"
         formControlName="name"
         placeholder="list name"
       />
-      <!--needs hover cursor -->
-      <button class="button" type="submit" [disabled]="newList.get('name').errors">
+      <button
+        class="button"
+        type="submit"
+        [disabled]="newList.get('name').errors"
+      >
         +
       </button>
     </form>
-
-    <!-- Validation Errors -->
     <div
       [ngClass]="{
         invalid:
           newList.get('name').errors &&
           newList.get('name').errors.nameAlreadyExists,
-          error: true
+        error: true
       }"
     >
       A list with this name already exists.
     </div>
   </div>
 
-  <div class="content">
-      <p *ngIf="lists.length === 0" class="no-lists">There are no lists to display.</p>
+  <div class="view">
+    <p *ngIf="lists.length === 0" class="no-lists">
+      There are no lists to display.
+    </p>
     <ul class="view-lists">
       <li class="item" *ngFor="let list of lists">
         <div class="description">
@@ -54,7 +55,9 @@
           <button class="button" (click)="onDeleteList(list.name)">
             Delete
           </button>
-          <button class="button" [routerLink]="['/list', list.name]">View</button>
+          <button class="button" [routerLink]="['/list', list.name]">
+            View
+          </button>
         </div>
       </li>
     </ul>

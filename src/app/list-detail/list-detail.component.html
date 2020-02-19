@@ -1,10 +1,15 @@
 <section class="movies">
   <header class="header">
-    <!-- maybe get rid of list[0] -->
     <h1 class="title">{{ list[0].name }}</h1>
   </header>
+
   <div class="add">
-    <form class="form" [formGroup]="newMovie" (ngSubmit)="onSubmitNewMovie()" (keyup)="searchMovies(newMovie.get('movie').value)">
+    <form
+      class="form"
+      [formGroup]="newMovie"
+      (ngSubmit)="onSubmitNewMovie()"
+      (keyup)="searchMovies(newMovie.get('movie').value)"
+    >
       <label class="label" for="add-movie">Add a new movie</label>
       <input
         id="add-movie"
@@ -12,32 +17,34 @@
           invalid:
             newMovie.get('movie').errors &&
             newMovie.get('movie').errors.nameAlreadyExists,
-            input: true
+          input: true
         }"
         type="text"
         list="suggested-movies"
         formControlName="movie"
         placeholder="movie name"
       />
-      
-     
       <datalist *ngIf="searchResults" id="suggested-movies">
-        <option *ngFor="let result of searchResults" value="{{result.Title}}">{{result.Title}}</option>
+        <option
+          *ngFor="let result of searchResults"
+          value="{{ result.Title }}"
+          >{{ result.Title }}</option
+        >
       </datalist>
-   
-
-      <button class="button" type="submit" [disabled]="newMovie.get('movie').errors">
+      <button
+        class="button"
+        type="submit"
+        [disabled]="newMovie.get('movie').errors"
+      >
         +
       </button>
     </form>
-
-    <!-- Validation Errors -->
     <div
       [ngClass]="{
         invalid:
           newMovie.get('movie').errors &&
           newMovie.get('movie').errors.nameAlreadyExists,
-          error: true
+        error: true
       }"
     >
       A movie with this name already exists.
@@ -45,27 +52,32 @@
   </div>
 
   <div class="view">
-      <p class="no-lists" *ngIf="list[0].movies.length === 0">There are no movies to display.</p>
+    <p class="no-lists" *ngIf="list[0].movies.length === 0">
+      There are no movies to display.
+    </p>
     <ul class="movies-list">
-      <li [ngClass]="{
-        unwatched:
-          !movie.watched,
+      <li
+        [ngClass]="{
+          unwatched: !movie.watched,
           watched: movie.watched,
           movie: true
-      }" *ngFor="let movie of list[0].movies">
+        }"
+        *ngFor="let movie of list[0].movies"
+      >
         <div class="movie-name" *ngIf="!movie.edit">
-        <form class="checkbox">
-          <input
-          class="input"
-            id="checkbox"
-            type="checkbox"
-            (change)="onCheck(movie.name)"
-            [checked]="movie.watched"
-          />
-        </form>
-        {{ movie.name }}</div>
-
-        <form class="form edit"
+          <form class="checkbox">
+            <input
+              class="input"
+              id="checkbox"
+              type="checkbox"
+              (change)="onCheck(movie.name)"
+              [checked]="movie.watched"
+            />
+          </form>
+          {{ movie.name }}
+        </div>
+        <form
+          class="form edit"
           *ngIf="movie.edit"
           [formGroup]="editMovie"
           (ngSubmit)="onSubmitEdit(movie.name)"
@@ -77,46 +89,32 @@
               invalid:
                 editMovie.get('movie').errors &&
                 editMovie.get('movie').errors.nameAlreadyExists,
-                input: true
+              input: true
             }"
             type="text"
             list="suggested-movies"
             formControlName="movie"
             [value]="movie.name"
           />
-          <!-- <datalist id="suggested-movies">
-            <option value="test1"> </option>
-            <option value="test2"> </option>
-          </datalist> -->
-
-          <button class="button" type="submit" [disabled]="editMovie.get('movie').errors">
+          <button
+            class="button"
+            type="submit"
+            [disabled]="editMovie.get('movie').errors"
+          >
             +
           </button>
           <div
-          [ngClass]="{
-            invalid:
-              editMovie.get('movie').errors &&
-              editMovie.get('movie').errors.nameAlreadyExists &&
-              editMovie.get('movie').dirty,
+            [ngClass]="{
+              invalid:
+                editMovie.get('movie').errors &&
+                editMovie.get('movie').errors.nameAlreadyExists &&
+                editMovie.get('movie').dirty,
               error: true
-          }"
-        >
-          A movie with this name already exists.
-        </div>
+            }"
+          >
+            A movie with this name already exists.
+          </div>
         </form>
-
-        <!-- <div
-        [ngClass]="{
-          invalid:
-            editMovie.get('movie').errors &&
-            editMovie.get('movie').errors.nameAlreadyExists &&
-            editMovie.get('movie').dirty,
-            error: true
-        }"
-      >
-        A movie with this name already exists.
-      </div> -->
-
         <div class="actions">
           <button class="button" (click)="onDeleteMovie(movie.name)">
             Delete
