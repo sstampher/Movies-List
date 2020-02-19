@@ -3,8 +3,11 @@
 @import './variables.scss';
 
 body {
-    background-color: $background;
+    background-color: $background-dark;
     box-sizing: border-box;
+    @media (max-width: $tablet) {
+      background-color: $background;
+    }
 }
 
 * {
@@ -17,9 +20,9 @@ button {
     border: none;
     margin-right: .5em;
     margin-left: .5em;
-    @include neumorphism(50px);
+    @include neumorphism(50px, $background-light);
     &:hover {
-        @include neumorphism-invert(50px, $background);
+        @include neumorphism-invert(50px, $background-darkest);
     }
     &:focus {
         outline: none;
@@ -67,5 +70,9 @@ input {
     }
     & .button {
       grid-area: submit;
+      @include neumorphism(50px, $background-light);
+      &:hover {
+        @include neumorphism-invert(50px, $background-dark);
+    }
     }
   }
