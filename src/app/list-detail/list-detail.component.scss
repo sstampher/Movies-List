@@ -66,6 +66,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 50vh;
+    margin-top: 1em;
+    margin: 2em;
+    overflow-y: auto;
+    @media (max-width: $tablet) {
+      margin-top: 0em;
+      margin-bottom: 0em;
+      height: 100%;
+      overflow-y: visible;
+    }
   }
 }
 
@@ -95,7 +105,8 @@
 
 .movies-list {
   width: 68%;
-  margin: 1.5em auto;
+  margin-right: auto;
+  margin-left: auto;
   & .movie {
     list-style: none;
     margin-top: 1em;
