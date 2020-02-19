@@ -106,7 +106,6 @@
       padding: 1.5em;
     }
     & .description {
-      grid-area: name;
       @media (max-width: 450px) {
         text-align: center;
       }
@@ -115,7 +114,6 @@
       }
       & .counter {
         font-style: italic;
-        grid-area: counter;
         @media (max-width: 450px) {
           text-align: center;
         }
@@ -123,13 +121,12 @@
     }
     & .actions {
       display: flex;
-      flex-direction: row;
       @media (max-width: 800px) {
         margin-top: 1em;
       }
     }
     &:hover {
-      background-color: darken($background, 3%);
+         @include neumorphism-invert(20px, $background);
     }
   }
 }
