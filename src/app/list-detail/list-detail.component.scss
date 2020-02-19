@@ -83,7 +83,7 @@
 }
 
 .movies-list {
-  width: 80%;
+  width: 68%;
   margin: 1.5em;
   & .movie {
     list-style: none;
@@ -102,18 +102,13 @@
       background-color: darken($background, 3%);
     }
     & .checkbox {
-      flex: 0.5;
-      & .label {
-        visibility: hidden;
-      }
+      margin-right: 1em;
     }
     & .movie-name {
-      flex: 1;
+      display: flex;
     }
     & .actions {
-      flex: 1;
       display: flex;
-      flex-direction: row;
       @media (max-width: 800px) {
         margin-top: 1em;
       }
