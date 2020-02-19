@@ -16,6 +16,11 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    @media (max-width: $tablet) {
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-top: 1em;
+    }
   }
   main {
     grid-area: main;
@@ -32,21 +37,24 @@
 /*.......... Content ..........*/
 
 .app-title {
-  margin: 0.2em 1.5em;
+  margin-right: 1em;
+  margin-left: .5em;
+  white-space: nowrap;
 }
 
 .nav-items {
-  margin: 0.2em 1.5em;
   display: flex;
   & .nav-item {
     list-style: none;
     & .nav-link {
       display: block;
       text-decoration: none;
-      margin-right: 1em;
-      margin-left: 1em;
-      padding: 0.7em 1.4em;
+      padding: 0.5em .7em;
+      white-space: nowrap;
       @include neumorphism(0px);
+      &:hover {
+        @include neumorphism-invert(0px, $background);
+      }
     }
   }
 }
